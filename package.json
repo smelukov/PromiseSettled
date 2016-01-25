@@ -1,0 +1,39 @@
+{
+  "name": "promise-ext-settled",
+  "version": "1.0.0",
+  "description": "Simple settled promise",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smelukov/PromiseSettled.git"
+  },
+  "keywords": [
+    "promise",
+    "es6",
+    "settled",
+    "all"
+  ],
+  "author": "Sergey Melyukov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smelukov/PromiseSettled/issues"
+  },
+  "homepage": "https://github.com/smelukov/PromiseSettled#readme",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-header": "^1.7.1",
+    "gulp-jscs": "^3.0.2",
+    "gulp-mocha": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.1",
+    "jscs": "^2.8.0",
+    "mocha": "^2.3.4",
+    "promise-ext-delay": "^1.0.4"
+  }
+}
