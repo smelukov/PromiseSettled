@@ -1,0 +1,2 @@
+# PromiseSettled
+Simple settled promise
