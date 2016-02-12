@@ -1,37 +1,9 @@
 var chai = require('chai'),
-	SettledExt = require('../src/main');
+	SettledExt = require('../src/index');
 
 require('promise-ext-delay')();
 
 chai.should();
-
-describe('Extension', function() {
-	it('should inject in built-in promise', function() {
-		var CustomPromiseConstructor = function() {
-		};
-
-		!function() {
-			SettledExt();
-			SettledExt(CustomPromiseConstructor);
-		}.should.not.throw(Error);
-
-		global._oldPromise = global.Promise;
-
-		!function() {
-			delete global.Promise;
-			SettledExt();
-		}.should.throw(Error);
-
-		global.Promise = global._oldPromise;
-
-		Promise.should.contain.all.keys('allSettled');
-
-		CustomPromiseConstructor.should.contain.all.keys('allSettled');
-
-		SettledExt('customSettled');
-		Promise.should.contain.all.keys('customSettled');
-	});
-});
 
 describe('Functional', function() {
 	it('should working correctly as static function and onProgress-function should be called', function(done) {
@@ -53,7 +25,7 @@ describe('Functional', function() {
 			promises.push(p);
 		}
 
-		Promise.allSettled(promises, function() {
+		SettledExt(promises, function() {
 			settled++;
 		}).then(function() {
 			try {
@@ -86,7 +58,7 @@ describe('Functional', function() {
 			promises.push(p);
 		}
 
-		Promise.allSettled(promises).then(function(result) {
+		SettledExt(promises).then(function(result) {
 			result.forEach(function(data) {
 				if (data.status) {
 					resolved++;

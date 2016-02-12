@@ -8,8 +8,6 @@
 <body>
 <script>
     require(['../build/promiseSettled.min'], function(PromiseSettled) {
-        PromiseSettled();
-
         var promises = [], rejected = 0, resolved = 0;
 
         for (var i = 1; i <= 10; i++) {
@@ -26,7 +24,7 @@
             promises.push(p);
         }
 
-        Promise.allSettled(promises, function(data) {
+        PromiseSettled(promises, function(data) {
             var d = document.createElement('div');
 
             d.textContent = 'status: ' + data.status + '; value: ' + data.value;
