@@ -1,4 +1,5 @@
 var chai = require('chai'),
+	sinon = require('sinon'),
 	SettledExt = require('../src/index');
 
 require('promise-ext-delay')();
@@ -6,9 +7,15 @@ require('promise-ext-delay')();
 chai.should();
 
 describe('Functional', function() {
-	it('should working correctly as static function and onProgress-function should be called', function(done) {
-		this.timeout(2000);
+	before(function() {
+		this.clock = sinon.useFakeTimers();
+	}),
 
+	after(function() {
+		this.clock.restore();
+	}),
+
+	it('should working correctly as static function and onProgress-function should be called', function(done) {
 		var current = new Date(),
 			promises = [],
 			settled = 0;
@@ -24,6 +31,8 @@ describe('Functional', function() {
 
 			promises.push(p);
 		}
+
+		this.clock.tick(500);
 
 		SettledExt(promises, function() {
 			settled++;
