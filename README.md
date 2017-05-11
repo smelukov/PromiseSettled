@@ -22,7 +22,9 @@ allSettled promise will be resolved with an array of objects that contains an in
 
 As well, onProgress function will be called (if passed) after any of the passed promises will be settled (resolved or rejected).
 
-onProgress function may accept one argument - object that contains an info about settled promise: status (true or false) and value (fulfilled or rejected value).
+onProgress function may accept two arguments:
+* object that contains an info about settled promise: status (true or false) and value (fulfilled or rejected value).
+* object that contains overall execution status with following properties: total (total tasks to be executed), resolved (succeeded by now), rejected (failed by now)
 
 ### How to install it?
 ```shell

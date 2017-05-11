@@ -16,6 +16,7 @@
  * @return {Promise}
  */
 function allSettled(promises, onProgress) {
+    var status = {total: promises.length, resolved: 0, rejected: 0};
     var mapped = promises.map(function(promise) {
         return promise.then(function(value) {
             return {
@@ -29,7 +30,16 @@ function allSettled(promises, onProgress) {
             };
         }).then(function(value) {
             if (typeof onProgress === 'function') {
-                onProgress(value);
+                if (value.status) {
+                    status.resolved++;
+                } else {
+                    status.rejected++;
+                }
+                onProgress(value, {
+                    total: status.total,
+                    resolved: status.resolved,
+                    rejected: status.rejected
+                });
             }
 
             return value;
